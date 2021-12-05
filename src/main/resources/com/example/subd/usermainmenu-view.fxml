@@ -9,6 +9,7 @@
    <children>
       <AnchorPane layoutY="76.0" prefHeight="333.0" prefWidth="601.0" style="-fx-background-color: #FFFFFF;">
          <children>
+            <Button fx:id="btnSignOut" layoutX="9.0" layoutY="25.0" mnemonicParsing="false" text="Back" />
             <Button fx:id="btnSubscriptions" layoutX="200.0" layoutY="50.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Subscriptions" />
             <Button fx:id="btnFutureGoals" layoutX="201.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Future goals" />
             <Button fx:id="btnBooks" layoutX="202.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Books" />

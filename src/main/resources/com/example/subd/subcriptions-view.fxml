@@ -11,8 +11,7 @@
         <AnchorPane layoutY="76.0" prefHeight="325.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
             <children>
                 <Label fx:id="lName" layoutX="500.0" layoutY="6.0" text="name" />
-            <Button fx:id="btnBack" layoutX="14.0" layoutY="24.0" mnemonicParsing="false" text="Back" />
-            <Label fx:id="lMessage" layoutX="200.0" layoutY="36.0" textFill="RED" />
+            <Button fx:id="btnBack" layoutX="9.0" layoutY="25.0" mnemonicParsing="false" text="Back" />
             <ListView fx:id="lvSubscriptions" layoutX="62.0" layoutY="25.0" prefHeight="275.0" prefWidth="269.0" />
             <AnchorPane layoutX="331.0" layoutY="25.0" prefHeight="275.0" prefWidth="269.0" style="-fx-background-color: #EFEFEF; -fx-border-color: #000000;">
                <children>
@@ -28,7 +27,7 @@
             <Button fx:id="btnTakeIt" layoutX="9.0" layoutY="275.0" mnemonicParsing="false" text="Take it" />
             </children>
         </AnchorPane>
-        <Label layoutX="232.0" layoutY="28.0" text="SUBSCRIPTIONS" textFill="WHITE">
+        <Label layoutX="232.0" layoutY="24.0" text="SUBSCRIPTIONS" textFill="WHITE">
             <font>
                 <Font size="19.0" />
             </font>

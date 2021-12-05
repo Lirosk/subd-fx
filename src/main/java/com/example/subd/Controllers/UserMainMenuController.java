@@ -30,6 +30,9 @@ public class UserMainMenuController {
     private Button btnPromotions;
 
     @FXML
+    private Button btnSignOut;
+
+    @FXML
     private Button btnSubscriptions;
 
     @FXML
@@ -39,8 +42,20 @@ public class UserMainMenuController {
     void initialize() {
         lName.setText(LoginHelper.user.name);
 
+        setButtonsActions();
+    }
+
+    private void setButtonsActions() {
+        btnSignOut.setOnAction(actionEvent -> {
+            Utils.setStage(btnSignOut, Urls.LOGIN);
+        });
+
         btnSubscriptions.setOnAction(actionEvent -> {
             Utils.setStage(btnSubscriptions, Urls.SUBSCRIPTIONS);
+        });
+
+        btnBooks.setOnAction(actionEvent -> {
+            Utils.setStage(btnBooks, Urls.BOOKS);
         });
     }
 

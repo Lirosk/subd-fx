@@ -56,56 +56,16 @@ public class SubscriptionsController {
     void initialize() {
         lName.setText(LoginHelper.user.name);
 
-        btnBack.setOnAction(actionEvent -> {
-            Utils.setStage(btnBack, Urls.USERMAINMENU);
-        });
+        setButtonsActions();
 
         setLvSubscriptions();
-        lvSubscriptions.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                int selectedSubsriptionIndex = lvSubscriptions.getSelectionModel().getSelectedIndex();
-                Subscription selectedSubscription = subscriptions.get(selectedSubsriptionIndex);
-                lSubscriptionName.setText(selectedSubscription.name);
-                lSubscriptionDescr.setText(selectedSubscription.descr);
-                lSubscriptionPrice.setText(Integer.toString(selectedSubscription.price));
-                lMessage.setText("");
-            }
-        });
-
-        btnTakeIt.setOnAction(actionEvent -> {
-            // if nothing selected
-            int index = lvSubscriptions.getSelectionModel().getSelectedIndex();
-            if (index == -1) {
-                lMessage.setTextFill(Color.color(1, 0, 0));
-                lMessage.setText("Nothing selected");
-            }
-            else
-            {
-                // insert user to subscription
-                String query = String.format(
-                        "UPDATE %s SET %s = %d WHERE %s = %d;",
-                        DBHelper.UsersToSubscriptions.NAME,
-                        DBHelper.UsersToSubscriptions.COLUMN_SUBSCRIPTION_ID, subscriptions.get(index).id,
-                        DBHelper.UsersToSubscriptions.COLUMN_USER_ID, LoginHelper.user.id
-                );
-                try {
-                    // inserting to users_to_subscriptions
-                    DBHelper.executeQuery(query);
-                    try {
-                        // logging
-                        DBHelper.insertLog(LoginHelper.user.name + " changed subscription to one with id " + subscriptions.get(index).id);
-                    }
-                    catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                } catch (SQLException e) {
-                    lMessage.setTextFill(Color.color(1, 0, 0));
-                    lMessage.setText("Unexpected error");
-                }
-                lMessage.setTextFill(Color.color(0, 1, 0));
-                lMessage.setText("You successfully changed the subscription");
-            }
+        lvSubscriptions.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            int selectedSubsriptionIndex = lvSubscriptions.getSelectionModel().getSelectedIndex();
+            Subscription selectedSubscription = subscriptions.get(selectedSubsriptionIndex);
+            lSubscriptionName.setText(selectedSubscription.name);
+            lSubscriptionDescr.setText(selectedSubscription.descr);
+            lSubscriptionPrice.setText(Integer.toString(selectedSubscription.price));
+            lMessage.setText("");
         });
     }
 
@@ -144,6 +104,47 @@ public class SubscriptionsController {
             lMessage.setText("Error on selecting subscriptions");
             e.printStackTrace();
         }
+    }
+
+    private void setButtonsActions() {
+        btnBack.setOnAction(actionEvent -> {
+            Utils.setStage(btnBack, Urls.USERMAINMENU);
+        });
+
+        btnTakeIt.setOnAction(actionEvent -> {
+            // if nothing selected
+            int index = lvSubscriptions.getSelectionModel().getSelectedIndex();
+            if (index == -1) {
+                lMessage.setTextFill(Color.color(1, 0, 0));
+                lMessage.setText("Nothing selected");
+            }
+            else
+            {
+                // insert user to subscription
+                String query = String.format(
+                        "UPDATE %s SET %s = %d WHERE %s = %d;",
+                        DBHelper.UsersToSubscriptions.NAME,
+                        DBHelper.UsersToSubscriptions.COLUMN_SUBSCRIPTION_ID, subscriptions.get(index).id,
+                        DBHelper.UsersToSubscriptions.COLUMN_USER_ID, LoginHelper.user.id
+                );
+                try {
+                    // inserting to users_to_subscriptions
+                    DBHelper.executeQuery(query);
+                    try {
+                        // logging
+                        DBHelper.insertLog(LoginHelper.user.name + " changed subscription to one with id " + subscriptions.get(index).id);
+                    }
+                    catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                } catch (SQLException e) {
+                    lMessage.setTextFill(Color.color(1, 0, 0));
+                    lMessage.setText("Unexpected error");
+                }
+                lMessage.setTextFill(Color.color(0, 1, 0));
+                lMessage.setText("You successfully changed the subscription");
+            }
+        });
     }
 
 }
