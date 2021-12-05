@@ -179,4 +179,13 @@ public class DBHelper {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
+
+    public static class UsersToSubscriptions {
+        public static final String NAME = "users_to_subscriptions";
+        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_USER_ID = "user_id";
+        public static final String COLUMN_SUBSCRIPTION_ID = "subscription_id";
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////
 }
