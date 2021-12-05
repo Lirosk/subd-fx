@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #6611ad;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.subd.Controllers.UserMainMenuController">
+   <children>
+      <AnchorPane layoutY="76.0" prefHeight="333.0" prefWidth="601.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Button fx:id="btnSubscriptions" layoutX="200.0" layoutY="50.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Subscriptions" />
+            <Button fx:id="btnFutureGoals" layoutX="201.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Future goals" />
+            <Button fx:id="btnBooks" layoutX="202.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Books" />
+            <Button fx:id="btnBranches" layoutX="200.0" layoutY="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Branches" />
+            <Button fx:id="btnPromotions" layoutX="200.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Promotions" />
+            <Label fx:id="lName" layoutX="536.0" layoutY="14.0" text="name" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="232.0" layoutY="28.0" text="BOOKS SOURCE" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

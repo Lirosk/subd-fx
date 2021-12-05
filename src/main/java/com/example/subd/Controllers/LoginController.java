@@ -1,18 +1,18 @@
-package com.example.subd;
+package com.example.subd.Controllers;
 
-import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import com.example.subd.Helpers.DBHelper;
+import com.example.subd.Helpers.LoginHelper;
+import com.example.subd.Helpers.Urls;
+import com.example.subd.Helpers.Utils;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class LoginController {
 
@@ -37,20 +37,33 @@ public class LoginController {
     @FXML
     void initialize() {
         btnLogin.setOnAction(actionEvent -> {
+            // if name is empty
             if (Objects.equals(tfName.getText(), "")) {
                 lMessage.setText("Cant be empty");
             }
-
-            if (DBHelper.existsInTable(
+            // if it is ok
+            else if (DBHelper.existsInTable(
                     DBHelper.Users.NAME,
                     DBHelper.Users.COLUMN_NAME,
                     tfName.getText()
             )) {
-                tfName.clear();
+                // insert  log
+                try {
+                    DBHelper.insertLog(tfName.getText() + " logged");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+                // move to next stage
+                LoginHelper.name = tfName.getText();
+                Utils.setStage(btnLogin, Urls.USERMAINMENU);
+            }
+            else {
+                lMessage.setText("You need to be signed up");
             }
         });
         btnSignUp.setOnAction(actionEvent -> {
-            Utils.setScene(btnSignUp, Urls.SIGNUP);
+            Utils.setStage(btnSignUp, Urls.SIGNUP);
         });
     }
 
