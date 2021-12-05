@@ -1,5 +1,7 @@
 package com.example.subd.Helpers;
 
+import com.example.subd.Models.User;
+
 public class LoginHelper {
-    public static String name = "";
+    public static User user;
 }

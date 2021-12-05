@@ -1,6 +1,7 @@
 package com.example.subd.Controllers;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -9,6 +10,7 @@ import com.example.subd.Helpers.DBHelper;
 import com.example.subd.Helpers.LoginHelper;
 import com.example.subd.Helpers.Urls;
 import com.example.subd.Helpers.Utils;
+import com.example.subd.Models.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -41,26 +43,45 @@ public class LoginController {
             if (Objects.equals(tfName.getText(), "")) {
                 lMessage.setText("Cant be empty");
             }
-            // if it is ok
-            else if (DBHelper.existsInTable(
-                    DBHelper.Users.NAME,
-                    DBHelper.Users.COLUMN_NAME,
-                    tfName.getText()
-            )) {
-                // insert  log
+            // check for user in users
+            else {
+                ResultSet res = null;
                 try {
-                    DBHelper.insertLog(tfName.getText() + " logged");
-                } catch (SQLException e) {
+                    res = DBHelper.executeWithResult(
+                            String.format(
+                                    "SELECT * FROM %s WHERE %s = '%s'",
+                                    DBHelper.Users.NAME, DBHelper.Users.COLUMN_NAME,
+                                    tfName.getText().replace("'", "''")
+                            )
+                    );
+
+                    // if it is ok
+                    if (res.next()) {
+                        User user = new User();
+                        user.id = res.getInt(res.findColumn(DBHelper.Users.COLUMN_ID));
+                        user.name = res.getString(res.findColumn(DBHelper.Users.COLUMN_NAME));
+                        LoginHelper.user = user;
+
+                        // insert log
+                        try {
+                            DBHelper.insertLog(tfName.getText() + " logged");
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+
+                        // set new stage
+                        Utils.setStage(btnLogin, Urls.USERMAINMENU);
+                    }
+                    //there is not such user
+                    else {
+                        lMessage.setText("You need to be signed up");
+                    }
+                }
+                catch (SQLException e) {
                     e.printStackTrace();
                 }
+            }
 
-                // move to next stage
-                LoginHelper.name = tfName.getText();
-                Utils.setStage(btnLogin, Urls.USERMAINMENU);
-            }
-            else {
-                lMessage.setText("You need to be signed up");
-            }
         });
         btnSignUp.setOnAction(actionEvent -> {
             Utils.setStage(btnSignUp, Urls.SIGNUP);

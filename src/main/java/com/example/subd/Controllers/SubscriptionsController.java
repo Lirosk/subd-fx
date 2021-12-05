@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.example.subd.Helpers.DBHelper;
+import com.example.subd.Helpers.LoginHelper;
 import com.example.subd.Helpers.Urls;
 import com.example.subd.Helpers.Utils;
 import com.example.subd.Models.Subscription;
@@ -16,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.paint.Color;
 
 public class SubscriptionsController {
 
@@ -27,6 +29,9 @@ public class SubscriptionsController {
 
     @FXML
     private Button btnBack;
+
+    @FXML
+    private Button btnTakeIt;
 
     @FXML
     private Label lMessage;
@@ -49,6 +54,8 @@ public class SubscriptionsController {
 
     @FXML
     void initialize() {
+        lName.setText(LoginHelper.user.name);
+
         btnBack.setOnAction(actionEvent -> {
             Utils.setStage(btnBack, Urls.USERMAINMENU);
         });
@@ -57,11 +64,25 @@ public class SubscriptionsController {
         lvSubscriptions.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                int selectedSubsriptionIndex= lvSubscriptions.getSelectionModel().getSelectedIndex();
+                int selectedSubsriptionIndex = lvSubscriptions.getSelectionModel().getSelectedIndex();
                 Subscription selectedSubscription = subscriptions.get(selectedSubsriptionIndex);
                 lSubscriptionName.setText(selectedSubscription.name);
                 lSubscriptionDescr.setText(selectedSubscription.descr);
                 lSubscriptionPrice.setText(Integer.toString(selectedSubscription.price));
+            }
+        });
+
+        btnTakeIt.setOnAction(actionEvent -> {
+            // if nothing selected
+            int index = lvSubscriptions.getSelectionModel().getSelectedIndex();
+            if (index == -1) {
+                lMessage.setTextFill(Color.color(1, 0, 0));
+                lMessage.setText("Nothing selected");
+            }
+            // insert user to subscription
+            else
+            {
+
             }
         });
     }

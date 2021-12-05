@@ -37,7 +37,7 @@ public class UserMainMenuController {
 
     @FXML
     void initialize() {
-        lName.setText(LoginHelper.name);
+        lName.setText(LoginHelper.user.name);
 
         btnSubscriptions.setOnAction(actionEvent -> {
             Utils.setStage(btnSubscriptions, Urls.SUBSCRIPTIONS);
