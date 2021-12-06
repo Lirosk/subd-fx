@@ -14,7 +14,6 @@ DROP TABLE IF EXISTS promotions;
 DROP TABLE IF EXISTS subscriptions;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS books;
--- DROP TABLE IF EXISTS debtors;
 DROP TABLE IF EXISTS employees;
 DROP TABLE IF EXISTS future_goals;
 DROP TABLE IF EXISTS logs;
@@ -59,16 +58,6 @@ CREATE TABLE books
     title TEXT NOT NULL,
     author TEXT DEFAULT null
 );
-
-
-/*CREATE TABLE debtors
-(
-    debtor_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    userid INTEGER NOT NULL,
-    bookid INTEGER NOT NULL,
-    addr TEXT NOT NULL
-);*/
-
 
 CREATE TABLE employees
 (
@@ -141,16 +130,6 @@ CREATE TABLE books_to_branches
     FOREIGN KEY(book_id) REFERENCES books(book_id) ON DELETE CASCADE,
     FOREIGN KEY(branch_id) REFERENCES branches(branch_id) ON DELETE CASCADE
 );
-
-
-/*CREATE TABLE debtors_to_users
-(
-     debtor_to_user_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-     debtorid INTEGER NOT NULL,
-     userid INTEGER NOT NULL
-);*/
-
-
 
 -- branches
 INSERT INTO branches(name, addr) VALUES

@@ -60,8 +60,8 @@ public class SubscriptionsController {
 
         setLvSubscriptions();
         lvSubscriptions.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            int selectedSubsriptionIndex = lvSubscriptions.getSelectionModel().getSelectedIndex();
-            Subscription selectedSubscription = subscriptions.get(selectedSubsriptionIndex);
+            int selectedSubscriptionIndex = lvSubscriptions.getSelectionModel().getSelectedIndex();
+            Subscription selectedSubscription = subscriptions.get(selectedSubscriptionIndex);
             lSubscriptionName.setText(selectedSubscription.name);
             lSubscriptionDescr.setText(selectedSubscription.descr);
             lSubscriptionPrice.setText(Integer.toString(selectedSubscription.price));

@@ -17,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 public class BooksController {
 
@@ -55,32 +57,25 @@ public class BooksController {
         setLvBooks();
 
         lvBooks.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            lMessage.setText("");
+
             lvBranches.getItems().clear();
             int index = lvBooks.getSelectionModel().getSelectedIndex();
 
             for (Branch branch: books.get(index).branches) {
-                lvBranches.getItems().add(branch.name + "\n\t" + branch.addr);
+                lvBranches.getItems().add(branch.name + "\n\t@ " + branch.addr);
             }
+        });
+
+        lvBranches.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+           lMessage.setText("");
         });
     }
 
     private void setLvBooks() {
-//        """
-//                SELECT
-//                    a.book_id,
-//                    title,
-//                    author,
-//                    b.branch_id,
-//                    name,
-//                    addr
-//                FROM
-//                    books as a
-//                INNER JOIN
-//                    books_to_branches as b ON a.book_id = b.book_id
-//                INNER JOIN
-//                    branches as c ON b.branch_id = c.branch_id
-//                ORDER BY title;
-//                """
+        books.clear();
+        lvBooks.getItems().clear();
+
         String query = String.format(
                 """
                 SELECT
@@ -156,7 +151,6 @@ public class BooksController {
         }
         catch (SQLException e) {
             e.printStackTrace();
-//            lMessage.setText("Unexpected error");
             lMessage.setText(e.getMessage());
         }
     }
@@ -167,7 +161,41 @@ public class BooksController {
         });
 
         btnBookIt.setOnAction(actionEvent -> {
-            // TODO
+            int book_index = lvBooks.getSelectionModel().getSelectedIndex();
+            int branch_index = lvBranches.getSelectionModel().getSelectedIndex();
+
+            if (book_index == -1) {
+                lMessage.setTextFill(Color.color(1, 0, 0));
+                lMessage.setText("No book selected");
+            }
+            else if (branch_index == -1) {
+                lMessage.setTextFill(Color.color(1, 0, 0));
+                lMessage.setText("No branch selected");
+            }
+            else {
+                String query = String.format(
+                        "DELETE FROM %s WHERE %s = %d and %s = %d;",
+                        DBHelper.BooksToBranches.NAME,
+                        DBHelper.BooksToBranches.COLUMN_BOOK_ID, books.get(book_index).id,
+                        DBHelper.BooksToBranches.COLUMN_BRANCH_ID, books.get(book_index).branches.get(branch_index).id
+                );
+
+                try {
+                    DBHelper.executeQuery(query);
+                    setLvBooks();
+
+                    lMessage.setTextFill(Color.color(0, 1, 0));
+                    lMessage.setText("You successfully booked a book");
+
+                    DBHelper.insertLog(
+                            LoginHelper.user.name + " booked a book with id " + books.get(book_index).id +
+                            " at branch with id " + books.get(book_index).branches.get(branch_index).id
+                    );
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    lMessage.setText(e.getMessage());
+                }
+            }
         });
     }
 

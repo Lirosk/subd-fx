@@ -21,9 +21,6 @@ public class UserMainMenuController {
     private Button btnBooks;
 
     @FXML
-    private Button btnBranches;
-
-    @FXML
     private Button btnFutureGoals;
 
     @FXML
