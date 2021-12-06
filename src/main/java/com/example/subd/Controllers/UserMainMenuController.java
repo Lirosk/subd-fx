@@ -1,8 +1,10 @@
 package com.example.subd.Controllers;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import com.example.subd.Helpers.DBHelper;
 import com.example.subd.Helpers.LoginHelper;
 import com.example.subd.Helpers.Urls;
 import com.example.subd.Helpers.Utils;
@@ -33,6 +35,9 @@ public class UserMainMenuController {
     private Button btnSubscriptions;
 
     @FXML
+    private Button btnDeleteAccount;
+
+    @FXML
     private Label lName;
 
     @FXML
@@ -61,6 +66,24 @@ public class UserMainMenuController {
 
         btnFutureGoals.setOnAction(actionEvent -> {
             Utils.setStage(btnFutureGoals, Urls.FUTUREGOALS);
+        });
+
+        btnDeleteAccount.setOnAction(actionEvent -> {
+            String query = String.format(
+                    "DELETE FROM %s WHERE %s = '%s'",
+                    DBHelper.Users.NAME,
+                    DBHelper.Users.COLUMN_NAME, LoginHelper.user.name.replace("'", "''")
+            );
+
+            try {
+                DBHelper.executeQuery(query);
+                DBHelper.insertLog(LoginHelper.user.name + " with id " + LoginHelper.user.id + " has been deleted");
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            Utils.setStage(btnDeleteAccount, Urls.LOGIN);
         });
     }
 
