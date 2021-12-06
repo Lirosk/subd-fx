@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS employees;
 DROP TABLE IF EXISTS future_goals;
-DROP TABLE IF EXISTS logs;
+-- DROP TABLE IF EXISTS logs;
 
 SET FOREIGN_KEY_CHECKS=1;
 
@@ -74,12 +74,14 @@ CREATE TABLE future_goals
 );
 
 
+/*
 CREATE TABLE logs
 (
     log_id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     at DATETIME NOT NULL,
     descr TEXT NOT NULL
 );
+*/
 
 
 CREATE TABLE users_to_subscriptions
@@ -258,7 +260,7 @@ INSERT INTO future_goals_to_employees(future_goal_id, employee_id) VALUES
 );
 INSERT INTO future_goals_to_employees(future_goal_id, employee_id) VALUES
 (
-    2, 1
+    2, 2
 );
 
 
@@ -331,7 +333,7 @@ INSERT INTO users_to_subscriptions(user_id, subscription_id) VALUES
 );
 
 
-
+/*
 -- logs
 INSERT INTO logs(at, descr) VALUES(
     '0000-01-01 00:00:00',
@@ -493,3 +495,4 @@ INSERT INTO logs( at, descr) VALUES(
 	'2021-12-01 21:24:00',
 	'Lochne just signed up'
 );
+*/

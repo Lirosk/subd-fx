@@ -12,13 +12,13 @@ import com.example.subd.Helpers.LoginHelper;
 import com.example.subd.Helpers.Urls;
 import com.example.subd.Helpers.Utils;
 import com.example.subd.Models.Book;
+import com.example.subd.Models.BookToBranches;
 import com.example.subd.Models.Branch;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 public class BooksController {
 
@@ -42,7 +42,7 @@ public class BooksController {
 
     @FXML
     private ListView<String> lvBooks;
-    private ArrayList<Book> books = new ArrayList<>();
+    private final ArrayList<BookToBranches> booksToBranches = new ArrayList<>();
 
     @FXML
     private ListView<String> lvBranches;
@@ -62,7 +62,7 @@ public class BooksController {
             lvBranches.getItems().clear();
             int index = lvBooks.getSelectionModel().getSelectedIndex();
 
-            for (Branch branch: books.get(index).branches) {
+            for (Branch branch: booksToBranches.get(index).branches) {
                 lvBranches.getItems().add(branch.name + "\n\t@ " + branch.addr);
             }
         });
@@ -73,7 +73,7 @@ public class BooksController {
     }
 
     private void setLvBooks() {
-        books.clear();
+        booksToBranches.clear();
         lvBooks.getItems().clear();
 
         String query = String.format(
@@ -118,13 +118,16 @@ public class BooksController {
                 String title = res.getString(res.findColumn(DBHelper.Books.COLUMN_TITLE));
                 String author = res.getString(res.findColumn(DBHelper.Books.COLUMN_AUTHOR));
 
+                BookToBranches bookToBranches = new BookToBranches();
                 Book book = new Book();
                 book.id = book_id;
                 book.title = title;
                 book.author = ((author != null)? author : "");
 
+                bookToBranches.book = book;
+
                 do {
-                    if (Objects.equals(res.getString(res.findColumn(DBHelper.Books.COLUMN_TITLE)), book.title)) {
+                    if (Objects.equals(res.getString(res.findColumn(DBHelper.Books.COLUMN_TITLE)), bookToBranches.book.title)) {
                         int branch_id = res.getInt(res.findColumn(DBHelper.Branches.COLUMN_ID));
                         String name = res.getString(res.findColumn(DBHelper.Branches.COLUMN_NAME));
                         String addr = res.getString(res.findColumn(DBHelper.Branches.COLUMN_ADDR));
@@ -134,7 +137,7 @@ public class BooksController {
                         branch.name = name;
                         branch.addr = addr;
 
-                        book.branches.add(branch);
+                        bookToBranches.branches.add(branch);
                     }
                     else {
                         res.previous();
@@ -142,11 +145,11 @@ public class BooksController {
                     }
                 } while (res.next());
 
-                books.add(book);
+                this.booksToBranches.add(bookToBranches);
             }
 
-            for (Book book: books) {
-                lvBooks.getItems().add(book.author + " \"" + book.title + "\"");
+            for (BookToBranches bookToBranches: booksToBranches) {
+                lvBooks.getItems().add(bookToBranches.book.author + " \"" + bookToBranches.book.title + "\"");
             }
         }
         catch (SQLException e) {
@@ -176,8 +179,8 @@ public class BooksController {
                 String query = String.format(
                         "DELETE FROM %s WHERE %s = %d and %s = %d;",
                         DBHelper.BooksToBranches.NAME,
-                        DBHelper.BooksToBranches.COLUMN_BOOK_ID, books.get(book_index).id,
-                        DBHelper.BooksToBranches.COLUMN_BRANCH_ID, books.get(book_index).branches.get(branch_index).id
+                        DBHelper.BooksToBranches.COLUMN_BOOK_ID, booksToBranches.get(book_index).book.id,
+                        DBHelper.BooksToBranches.COLUMN_BRANCH_ID, booksToBranches.get(book_index).branches.get(branch_index).id
                 );
 
                 try {
@@ -188,8 +191,8 @@ public class BooksController {
                     lMessage.setText("You successfully booked a book");
 
                     DBHelper.insertLog(
-                            LoginHelper.user.name + " booked a book with id " + books.get(book_index).id +
-                            " at branch with id " + books.get(book_index).branches.get(branch_index).id
+                            LoginHelper.user.name + " booked a book with id " + booksToBranches.get(book_index).book.id +
+                            " at branch with id " + booksToBranches.get(book_index).branches.get(branch_index).id
                     );
                 } catch (SQLException e) {
                     e.printStackTrace();

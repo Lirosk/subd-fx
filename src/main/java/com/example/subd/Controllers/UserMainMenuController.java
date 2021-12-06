@@ -54,6 +54,14 @@ public class UserMainMenuController {
         btnBooks.setOnAction(actionEvent -> {
             Utils.setStage(btnBooks, Urls.BOOKS);
         });
+
+        btnPromotions.setOnAction(actionEvent -> {
+            Utils.setStage(btnPromotions, Urls.PROMOTIONS);
+        });
+
+        btnFutureGoals.setOnAction(actionEvent -> {
+            Utils.setStage(btnFutureGoals, Urls.FUTUREGOALS);
+        });
     }
 
 }
