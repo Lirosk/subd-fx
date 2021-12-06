@@ -49,6 +49,7 @@ public class UserMainMenuController {
 
     private void setButtonsActions() {
         btnSignOut.setOnAction(actionEvent -> {
+            LoginHelper.user = null;
             Utils.setStage(btnSignOut, Urls.LOGIN);
         });
 
@@ -83,6 +84,7 @@ public class UserMainMenuController {
                 e.printStackTrace();
             }
 
+            LoginHelper.user = null;
             Utils.setStage(btnDeleteAccount, Urls.LOGIN);
         });
     }

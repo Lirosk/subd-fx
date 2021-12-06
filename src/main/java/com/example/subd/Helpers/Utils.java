@@ -17,7 +17,7 @@ public class Utils {
         FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource(url));
         Scene scene;
         try {
-            scene = new Scene(loader.load(), 600, 400);
+            scene = new Scene(loader.load());
         }
         catch (IOException e) {
             return;
@@ -26,6 +26,21 @@ public class Utils {
         stage.setScene(scene);
         stage.setTitle("subd");
         element.getScene().getWindow().hide();
+        stage.show();
+    }
+
+    public static void showStage(String url) {
+        FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource(url));
+        Scene scene;
+        try {
+            scene = new Scene(loader.load());
+        }
+        catch (IOException e) {
+            return;
+        }
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("subd");
         stage.show();
     }
 }

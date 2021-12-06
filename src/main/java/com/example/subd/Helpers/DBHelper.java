@@ -78,8 +78,8 @@ public class DBHelper {
     public static class Branches {
         public static final String NAME = "branches";
         public static final String COLUMN_ID = "branch_id";
-        public static final String COLUMN_NAME = "name";
-        public static final String COLUMN_ADDR = "addr";
+        public static final String COLUMN_NAME = "branch_name";
+        public static final String COLUMN_ADDR = "branch_addr";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -87,8 +87,8 @@ public class DBHelper {
     public static class Promotions {
         public static final String NAME = "promotions";
         public static final String COLUMN_ID = "promotion_id";
-        public static final String COLUMN_NAME = "name";
-        public static final String COLUMN_DESCR = "descr";
+        public static final String COLUMN_NAME = "promotion_name";
+        public static final String COLUMN_DESCR = "promotion_descr";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -97,9 +97,9 @@ public class DBHelper {
     public static class Subscriptions {
         public static final String NAME = "subscriptions";
         public static final String COLUMN_ID = "subscription_id";
-        public static final String COLUMN_NAME = "name";
-        public static final String COLUMN_DESCR = "descr";
-        public static final String COLUMN_PRICE = "price";
+        public static final String COLUMN_NAME = "subscription_name";
+        public static final String COLUMN_DESCR = "subscription_descr";
+        public static final String COLUMN_PRICE = "subscription_price";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -107,7 +107,7 @@ public class DBHelper {
     public static class Users {
         public static final String NAME = "users";
         public static final String COLUMN_ID = "user_id";
-        public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_NAME = "user_name";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -115,8 +115,8 @@ public class DBHelper {
     public static class Books {
         public static final String NAME = "books";
         public static final String COLUMN_ID = "book_id";
-        public static final String COLUMN_TITLE = "title";
-        public static final String COLUMN_AUTHOR = "author";
+        public static final String COLUMN_TITLE = "book_title";
+        public static final String COLUMN_AUTHOR = "book_author";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -124,8 +124,8 @@ public class DBHelper {
     public static class Employees {
         public static final String NAME = "employees";
         public static final String COLUMN_ID = "employee_id";
-        public static final String COLUMN_NAME = "name";
-        public static final String COLUMN_TYPE = "type";
+        public static final String COLUMN_NAME = "employee_name";
+        public static final String COLUMN_TYPE = "employee_type";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -133,7 +133,7 @@ public class DBHelper {
     public static class FutureGoals {
         public static final String NAME = "future_goals";
         public static final String COLUMN_ID = "future_goal_id";
-        public static final String COLUMN_DESCR = "descr";
+        public static final String COLUMN_DESCR = "future_goal_descr";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -141,8 +141,8 @@ public class DBHelper {
     public static class Logs {
         public static final String NAME = "logs";
         public static final String COLUMN_ID = "log_id";
-        public static final String COLUMN_AT = "at";
-        public static final String COLUMN_DESCR = "descr";
+        public static final String COLUMN_AT = "log_at";
+        public static final String COLUMN_DESCR = "log_descr";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -150,8 +150,8 @@ public class DBHelper {
     public static class UsersToEmployees {
         public static final String NAME = "users_to_employees";
         public static final String COLUMN_ID = "user_to_employee_id";
-        public static final String COLUMN_USER_ID = "user_id";
-        public static final String COLUMN_EMPLOYEE_ID = "employee_id";
+        public static final String COLUMN_USER_ID = Users.COLUMN_ID;
+        public static final String COLUMN_EMPLOYEE_ID = Employees.COLUMN_ID;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -159,8 +159,8 @@ public class DBHelper {
     public static class EmployeesToBranches {
         public static final String NAME = "employees_to_branches";
         public static final String COLUMN_ID = "employee_to_branch_id";
-        public static final String COLUMN_EMPLOYEE_ID = "employee_id";
-        public static final String COLUMN_BRANCH_ID = "branch_id";
+        public static final String COLUMN_EMPLOYEE_ID = Employees.COLUMN_ID;
+        public static final String COLUMN_BRANCH_ID = Branches.COLUMN_ID;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -168,8 +168,8 @@ public class DBHelper {
     public static class FutureGoalsToEmployees {
         public static final String NAME = "future_goals_to_employees";
         public static final String COLUMN_ID = "future_goal_to_employee_id";
-        public static final String COLUMN_FUTURE_GOAL_ID = "future_goal_id";
-        public static final String COLUMN_EMPLOYEE_ID = "employee_id";
+        public static final String COLUMN_FUTURE_GOAL_ID = FutureGoals.COLUMN_ID;
+        public static final String COLUMN_EMPLOYEE_ID = Employees.COLUMN_ID;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -177,8 +177,8 @@ public class DBHelper {
     public static class BooksToBranches {
         public static final String NAME = "books_to_branches";
         public static final String COLUMN_ID = "book_to_branch_id";
-        public static final String COLUMN_BOOK_ID = "book_id";
-        public static final String COLUMN_BRANCH_ID = "branch_id";
+        public static final String COLUMN_BOOK_ID = Books.COLUMN_ID;
+        public static final String COLUMN_BRANCH_ID = Branches.COLUMN_ID;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -186,8 +186,8 @@ public class DBHelper {
     public static class UsersToSubscriptions {
         public static final String NAME = "users_to_subscriptions";
         public static final String COLUMN_ID = "user_to_subscription_id";
-        public static final String COLUMN_USER_ID = "user_id";
-        public static final String COLUMN_SUBSCRIPTION_ID = "subscription_id";
+        public static final String COLUMN_USER_ID = Users.COLUMN_ID;
+        public static final String COLUMN_SUBSCRIPTION_ID = Subscriptions.COLUMN_ID;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////

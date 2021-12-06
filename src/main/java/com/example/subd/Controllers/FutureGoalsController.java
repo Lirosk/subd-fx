@@ -69,16 +69,16 @@ public class FutureGoalsController {
                 """
                                 SELECT\s
                                      b.future_goal_id,
-                                     a.descr,
+                                     a.future_goal_descr,
                                      c.employee_id,
-                                     c.name
+                                     c.employee_name
                                 FROM\s
                                     future_goals as a
                                 INNER JOIN\s
                                     future_goals_to_employees as b ON a.future_goal_id = b.future_goal_id
                                 INNER JOIN\s
                                     employees as c ON c.employee_id = b.employee_id
-                                ORDER BY a.descr;
+                                ORDER BY future_goal_descr;
                         """;
 
         try {
@@ -93,7 +93,6 @@ public class FutureGoalsController {
 
                 Employee employee = new Employee();
                 employee.id = res.getInt(res.findColumn(DBHelper.Employees.COLUMN_ID));
-                ;
                 employee.name = res.getString(res.findColumn(DBHelper.Employees.COLUMN_NAME));
 
                 FutureGoalToEmployee futureGoalToEmployee = new FutureGoalToEmployee();

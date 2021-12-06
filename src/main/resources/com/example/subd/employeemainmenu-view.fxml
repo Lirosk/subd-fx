@@ -10,10 +10,10 @@
         <AnchorPane layoutY="76.0" prefHeight="333.0" prefWidth="601.0" style="-fx-background-color: #FFFFFF;">
             <children>
                 <Button fx:id="btnSignOut" layoutX="9.0" layoutY="25.0" mnemonicParsing="false" text="Sign out" />
-                <Button fx:id="btnUsers" layoutX="203.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Subscriptions" />
-                <Button fx:id="btnYourBranchEmployees" layoutX="203.0" layoutY="229.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Future goals" />
-                <Button fx:id="btnYourFutureGoals" layoutX="203.0" layoutY="129.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Books" />
-                <Button fx:id="btnLogs" layoutX="203.0" layoutY="179.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Promotions" />
+                <Button fx:id="btnUsers" layoutX="203.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Users" />
+                <Button fx:id="btnMyBranchEmployees" layoutX="203.0" layoutY="229.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="My branch employees" />
+                <Button fx:id="btnMyFutureGoals" layoutX="203.0" layoutY="129.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="My future goals" />
+                <Button fx:id="btnLogs" layoutX="203.0" layoutY="179.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" text="Logs" />
                 <Label fx:id="lName" layoutX="536.0" layoutY="14.0" text="name" />
             </children>
         </AnchorPane>
