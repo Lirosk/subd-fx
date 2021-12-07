@@ -3,6 +3,7 @@ USE subd;
 SELECT
 	a.employee_id,
     a.employee_name,
+    a.employee_type,
     c.branch_id,
     c.branch_name,
     c.branch_addr

@@ -226,6 +226,16 @@ INSERT INTO employees(employee_name, employee_type) VALUES
 	'Tom Cooper',
     'Pilot/Medium'
 );
+INSERT INTO employees(employee_name, employee_type) VALUES
+(
+	'NONAME1',
+    'TBM1'
+);
+INSERT INTO employees(employee_name, employee_type) VALUES
+(
+	'NONAME2',
+    'TBM2'
+);
 
 
 
@@ -237,6 +247,14 @@ INSERT INTO employees_to_branches(employee_id, branch_id) VALUES
 INSERT INTO employees_to_branches(employee_id, branch_id) VALUES
 (
     2, 2
+);
+INSERT INTO employees_to_branches(employee_id, branch_id) VALUES
+(
+    3, 1
+);
+INSERT INTO employees_to_branches(employee_id, branch_id) VALUES
+(
+    4, 2
 );
 
 

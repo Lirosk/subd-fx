@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.subd.Controllers.MyBranchEmployeesController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #6611ad;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.subd.Controllers.MyBranchEmployeesController">
+    <children>
+        <AnchorPane layoutY="76.0" prefHeight="325.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
+            <children>
+                <Label fx:id="lName" layoutX="500.0" layoutY="6.0" text="name" />
+                <Button fx:id="btnBack" layoutX="9.0" layoutY="25.0" mnemonicParsing="false" text="Back" />
+                <ListView fx:id="lvEmployees" layoutX="172.0" layoutY="25.0" prefHeight="275.0" prefWidth="256.0" />
+                <Label fx:id="lMessage" layoutX="166.0" layoutY="11.0" textFill="RED" />
+            <Label layoutX="472.0" layoutY="42.0" text="Your branch:" />
+            <Label fx:id="lBranch" alignment="TOP_LEFT" layoutX="472.0" layoutY="59.0" prefHeight="38.0" prefWidth="117.0" wrapText="true" />
+            <Label layoutX="472.0" layoutY="246.0" text="Type:" />
+            <Label fx:id="lType" layoutX="473.0" layoutY="263.0" />
+            </children>
+        </AnchorPane>
+        <Label layoutX="183.0" layoutY="29.0" text="YOUR BRANCH EMPLOYEES" textFill="WHITE">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </Label>
+    </children>
 
 </AnchorPane>
