@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.example.subd.Helpers.LoginHelper;
+import com.example.subd.Helpers.Urls;
+import com.example.subd.Helpers.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,9 +25,6 @@ public class EmployeeMainMenuController {
     private Button btnMyBranchEmployees;
 
     @FXML
-    private Button btnMyFutureGoals;
-
-    @FXML
     private Button btnSignOut;
 
     @FXML
@@ -38,6 +37,27 @@ public class EmployeeMainMenuController {
     void initialize() {
         lName.setText(LoginHelper.employee.name);
 
+        setButtonsActions();
+
+    }
+
+    private void setButtonsActions(){
+        btnSignOut.setOnAction(actionEvent -> {
+            Utils.setStage(btnSignOut, Urls.LOGIN);
+            LoginHelper.employee = null;
+        });
+
+        btnUsers.setOnAction(actionEvent -> {
+            Utils.setStage(btnUsers, Urls.USERS);
+        });
+
+        btnMyBranchEmployees.setOnAction(actionEvent -> {
+            Utils.setStage(btnMyBranchEmployees, Urls.MYBRANCHEMPLOYEES);
+        });
+
+        btnLogs.setOnAction(actionEvent -> {
+            Utils.setStage(btnLogs, Urls.LOGS);
+        });
     }
 
 }

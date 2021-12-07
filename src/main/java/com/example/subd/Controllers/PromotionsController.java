@@ -66,6 +66,8 @@ public class PromotionsController {
 
     private void setLvPromotions() {
         lvPromotions.getItems().clear();
+        promotions.clear();
+
         String query = String.format("SELECT * FROM %s", DBHelper.Promotions.NAME);
 
         try {

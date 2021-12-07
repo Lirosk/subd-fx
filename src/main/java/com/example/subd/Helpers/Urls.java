@@ -13,7 +13,7 @@ public class Urls {
 
     public static final String EMPLOYEEMAINMENU = "employeemainmenu-view.fxml";
     public static final String USERS = "users-view.fxml";
-    public static final String BRANCHEMPLOYEES = "mybranchemployees-view.fxml";
+    public static final String MYBRANCHEMPLOYEES = "mybranchemployees-view.fxml";
     public static final String MYFUTUREGOALS = "myfuturegoals-view.fxml";
     public static final String LOGS = "logs-view.fxml";
 }

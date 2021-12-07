@@ -65,6 +65,9 @@ public class FutureGoalsController {
     }
 
     private void setLvSubscriptions() {
+        lvFutureGoals.getItems().clear();
+        futureGoalsToEmployees.clear();
+
         String query =
                 """
                                 SELECT\s
@@ -82,8 +85,6 @@ public class FutureGoalsController {
                         """;
 
         try {
-            lvFutureGoals.getItems().clear();
-
             ResultSet res = DBHelper.executeWithResult(query);
 
             while (res.next()) {
